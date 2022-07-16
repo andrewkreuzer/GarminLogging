@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">GarminLogging</string>
+    <string name="element_text">hello</string>
+    <string name="clear">clear</string>
+</resources>
