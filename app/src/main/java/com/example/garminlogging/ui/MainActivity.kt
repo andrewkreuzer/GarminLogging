@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.garminlogging.*
+import com.example.garminlogging.data.LogData
 import com.example.garminlogging.data.LogListViewModel
 import com.example.garminlogging.garmin.GarminLog
 import com.google.android.material.snackbar.Snackbar
@@ -18,12 +19,19 @@ class MainActivity : AppCompatActivity() {
     private val mainActivityViewModel: MainActivityViewModel by viewModels()
     private val logListViewModel: LogListViewModel by viewModels()
     private lateinit var logListRecyclerView: RecyclerView
+    private lateinit var fab: View
+
     @Inject lateinit var garminConnect: GarminConnect
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        initializeLogList()
+        initializeFab()
+    }
+
+    private fun initializeLogList() {
         val logListAdapter = LogListAdapter()
         logListRecyclerView = findViewById(R.id.log_list)
         logListRecyclerView.visibility = View.INVISIBLE
@@ -46,20 +54,10 @@ class MainActivity : AppCompatActivity() {
                     .show()
             }
         }
-
-        val fab: View = findViewById(R.id.fab)
-        Fab(fab, garminConnect, logListViewModel, logListRecyclerView)
     }
-}
 
-class Fab @Inject constructor(
-    fab: View,
-    private val garminConnect: GarminConnect,
-    private val logListViewModel: LogListViewModel,
-    private val logListRecyclerView: RecyclerView,
-){
-
-    init {
+    private fun initializeFab() {
+        fab = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
             if (garminConnect.isLogging) {
                 if (garminConnect.unregisterMessageReceiver()) {
@@ -91,7 +89,7 @@ class Fab @Inject constructor(
                 .setAction("Action", null)
                 .show()
 
-//            logListViewModel.clearLogs()
+            logListViewModel.clearLogs()
             true
         }
     }

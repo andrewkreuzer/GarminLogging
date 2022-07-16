@@ -1,16 +1,18 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/list_item_height"
-    android:layout_marginLeft="@dimen/margin_medium"
-    android:layout_marginRight="@dimen/margin_medium"
-    android:gravity="center_vertical">
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:background="@drawable/log_item_border"
+    android:layout_marginHorizontal="@dimen/margin_xsmall">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_small"
+        android:paddingHorizontal="@dimen/margin_small"
+        android:paddingVertical="@dimen/margin_medium"
         android:text="@string/element_text"
         android:textAlignment="center"
-        android:textSize="@dimen/test_size" />
-</FrameLayout>
+        android:textSize="@dimen/text_size" />
+</androidx.appcompat.widget.LinearLayoutCompat>
